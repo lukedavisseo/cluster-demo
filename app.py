@@ -1,3 +1,11 @@
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "marimo",
+#     "polars-lts-cpu",
+#     "altair==5.5.0",
+# ]
+# ///
 import marimo
 
 __generated_with = "0.15.2"
