@@ -27,7 +27,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    uploaded_file = mo.ui.file(kind="area")
+    uploaded_file = mo.ui.file(kind="area", filetypes=[".csv", ".parquet"])
     uploaded_file
     return (uploaded_file,)
 
@@ -50,7 +50,7 @@ def _(df_embeds_umap, mo):
             y="y_2d"
         )
         .properties(
-            title="Available Car AI Chat Clusters",
+            title="Cluster Analysis",
             width=1000,
             height=1000
         )
