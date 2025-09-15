@@ -6,6 +6,7 @@
 #     "altair==5.5.0",
 # ]
 # ///
+
 import marimo
 
 __generated_with = "0.15.5"
@@ -34,7 +35,10 @@ def _(mo):
 
 @app.cell
 def _(pl, uploaded_file):
-    df_embeds_umap = pl.read_parquet(uploaded_file.value[0].contents)
+    if ".csv" in uploaded_file.value[0].name:
+        df_embeds_umap = pl.read_csv(uploaded_file.value[0].contents)
+    else:
+        df_embeds_umap = pl.read_parquet(uploaded_file.value[0].contents)
     return (df_embeds_umap,)
 
 
