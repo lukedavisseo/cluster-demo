@@ -52,22 +52,49 @@
         resizeObserver.observe(obj.contentWindow.document.body);
       }
     </script>
-    <marimo-filename hidden>{{ filename }}</marimo-filename>
+    <marimo-filename hidden>notebook.py</marimo-filename>
     <!-- TODO(Trevor): Legacy, required by VS Code plugin. Remove when plugin is updated (see marimo/server/_templates/template.py) -->
     <marimo-version data-version="{{ version }}" hidden></marimo-version>
     <marimo-user-config data-config="{{ user_config }}" hidden></marimo-user-config>
     <marimo-server-token data-token="{{ server_token }}" hidden></marimo-server-token>
     <!-- /TODO -->
-    <title>{{ title }}</title>
-    <script type="module" crossorigin src="./assets/index-BB71mG_d.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DryPQDfA.css">
-  </head>
+    <title>app</title>
+    <script type="module" crossorigin src="./assets/index-OC46250R.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CknhX2Vy.css">
+  <marimo-wasm hidden=""></marimo-wasm>
+    <script>
+        if (window.location.protocol === 'file:') {
+            alert('Warning: This file must be served by an HTTP server to function correctly.');
+        }
+    </script>
+    
+    <style>
+        #save-button {
+            display: none !important;
+        }
+        #filename-input {
+            display: none !important;
+        }
+    </style>
+    <marimo-code hidden="">import%20marimo%0A%0A__generated_with%20%3D%20%220.15.5%22%0Aapp%20%3D%20marimo.App(width%3D%22medium%22)%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20import%20marimo%20as%20mo%0A%20%20%20%20import%20polars%20as%20pl%0A%20%20%20%20return%20mo%2C%20pl%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%23%20Cluster%20Demo%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20uploaded_file%20%3D%20mo.ui.file(kind%3D%22area%22)%0A%20%20%20%20uploaded_file%0A%20%20%20%20return%20(uploaded_file%2C)%0A%0A%0A%40app.cell%0Adef%20_(pl%2C%20uploaded_file)%3A%0A%20%20%20%20df_embeds_umap%20%3D%20pl.read_parquet(uploaded_file.value%5B0%5D.contents)%0A%20%20%20%20return%20(df_embeds_umap%2C)%0A%0A%0A%40app.cell%0Adef%20_(df_embeds_umap%2C%20mo)%3A%0A%20%20%20%20import%20altair%20as%20alt%0A%0A%20%20%20%20chart%20%3D%20mo.ui.altair_chart(%0A%20%20%20%20%20%20%20%20alt.Chart(df_embeds_umap)%0A%20%20%20%20%20%20%20%20.mark_point()%0A%20%20%20%20%20%20%20%20.encode(%0A%20%20%20%20%20%20%20%20%20%20%20%20x%3D%22x_2d%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20y%3D%22y_2d%22%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20.properties(%0A%20%20%20%20%20%20%20%20%20%20%20%20title%3D%22Available%20Car%20AI%20Chat%20Clusters%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20width%3D1000%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20height%3D1000%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20.configure_title(%0A%20%20%20%20%20%20%20%20%20%20%20%20fontSize%3D20%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20)%0A%0A%20%20%20%20chart%0A%20%20%20%20return%20(chart%2C)%0A%0A%0A%40app.cell%0Adef%20_(chart)%3A%0A%20%20%20%20chart.value%0A%20%20%20%20return%0A%0A%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20app.run()%0A</marimo-code></head>
   <body>
     <div id="root"></div>
     <!-- This is a portal for the data editor to render in -->
     <div id="portal" data-testid="glide-portal" style="position: fixed; left: 0; top: 0; z-index: 9999"></div>
     <script data-marimo="true">
-      window.__MARIMO_MOUNT_CONFIG__ = '{{ mount_config }}';
+      window.__MARIMO_MOUNT_CONFIG__ = {
+            "filename": "notebook.py",
+            "mode": "read",
+            "version": "0.15.5",
+            "serverToken": "unused",
+            "config": {"ai": {"models": {"custom_models": [], "displayed_models": []}}, "completion": {"activate_on_typing": true, "copilot": false}, "display": {"cell_output": "above", "code_editor_font_size": 14, "dataframes": "rich", "default_table_max_columns": 50, "default_table_page_size": 10, "default_width": "medium", "reference_highlighting": false, "theme": "light"}, "formatting": {"line_length": 79}, "keymap": {"overrides": {}, "preset": "default"}, "language_servers": {"pylsp": {"enable_flake8": false, "enable_mypy": true, "enable_pydocstyle": false, "enable_pyflakes": false, "enable_pylint": false, "enable_ruff": true, "enabled": true}}, "package_management": {"manager": "uv"}, "runtime": {"auto_instantiate": true, "auto_reload": "off", "default_sql_output": "auto", "on_cell_change": "autorun", "output_max_bytes": 8000000, "reactive_tests": true, "std_stream_max_bytes": 1000000, "watcher_on_save": "lazy"}, "save": {"autosave": "off", "autosave_delay": 1000, "format_on_save": false}, "server": {"browser": "default", "follow_symlink": false}, "snippets": {"custom_paths": [], "include_default_snippets": true}},
+            "configOverrides": {},
+            "appConfig": {"sql_output": "auto", "width": "medium"},
+            "view": {"showAppCode": false},
+            "notebook": null,
+            "session": null,
+            "runtimeConfig": null,
+        };
     </script>
   </body>
 </html>
