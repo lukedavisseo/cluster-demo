@@ -68,8 +68,14 @@ def _(df_embeds_umap, mo):
 
 
 @app.cell
-def _(chart):
-    chart.value
+def _(chart, df_embeds_umap, mo):
+    cluster_pc = (chart.value['Message'].len() / df_embeds_umap['Message'].len()) * 100
+
+    mo.vstack(
+        [
+            mo.md(f"### This cluster accounts for {cluster_pc:.3f}% of the total dataset."),
+            chart.value
+        ])
     return
 
 
