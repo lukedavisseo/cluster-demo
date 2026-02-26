@@ -2,7 +2,7 @@
 # requires-python = ">=3.12"
 # dependencies = [
 #     "marimo",
-#     "polars-lts-cpu",
+#     "polars",
 #     "altair==5.5.0",
 # ]
 # ///
