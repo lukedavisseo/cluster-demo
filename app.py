@@ -9,7 +9,7 @@
 
 import marimo
 
-__generated_with = "0.16.1"
+__generated_with = "0.20.2"
 app = marimo.App(width="columns")
 
 
@@ -17,12 +17,17 @@ app = marimo.App(width="columns")
 def _():
     import marimo as mo
     import polars as pl
+
     return mo, pl
 
 
 @app.cell
 def _(mo):
-    mo.md(r"""# Cluster Demo""")
+    mo.md(r"""
+    # Cluster Demo
+
+    ## This app provides UMAP data visualisations
+    """)
     return
 
 
@@ -43,21 +48,11 @@ def _(pl, uploaded_file):
 
 
 @app.cell
-def _(df_embeds_umap, pl):
-    df_embeds_umap_cleaned = (
-        df_embeds_umap.filter(
-            pl.col('Message').str.len_chars() > 9
-        )
-    )
-    return (df_embeds_umap_cleaned,)
-
-
-@app.cell
-def _(df_embeds_umap_cleaned, mo):
+def _(df_embeds_umap, mo):
     import altair as alt
 
     chart = mo.ui.altair_chart(
-        alt.Chart(df_embeds_umap_cleaned)
+        alt.Chart(df_embeds_umap)
         .mark_point()
         .encode(
             x="x_2d",
@@ -79,7 +74,7 @@ def _(df_embeds_umap_cleaned, mo):
 
 @app.cell
 def _(chart, df_embeds_umap, mo):
-    cluster_pc = (chart.value['Message'].len() / df_embeds_umap['Message'].len()) * 100
+    cluster_pc = (len(chart.value) / len(df_embeds_umap)) * 100
 
     mo.vstack(
         [
@@ -121,7 +116,9 @@ def _(chart, form, mo, pl):
 
 @app.cell(column=1)
 def _(mo):
-    mo.md(r"""# Labelled Clusters""")
+    mo.md(r"""
+    # Labelled Clusters
+    """)
     return
 
 
